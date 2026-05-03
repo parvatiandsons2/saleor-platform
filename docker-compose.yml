@@ -19,14 +19,14 @@ services:
       - backend.env
     environment:
       - DASHBOARD_URL=https://saleor.prsn.in/
-      - ALLOWED_HOSTS=api.saleor.prsn.in,localhost,127.0.0.1,api
+      - ALLOWED_HOSTS=apisaleor.prsn.in,localhost,127.0.0.1,api
 
   dashboard:
     image: ghcr.io/saleor/saleor-dashboard:3.23
     
     restart: unless-stopped
     environment:
-      API_URI: https://api.saleor.prsn.in/graphql/
+      API_URI: https://apisaleor.prsn.in/graphql/
 
   db:
     image: library/postgres:15-alpine
