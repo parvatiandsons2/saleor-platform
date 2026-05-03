@@ -1,7 +1,6 @@
 services:
   api:
     image: ghcr.io/saleor/saleor:3.23
-    
     restart: unless-stopped
     networks:
       - saleor-backend-tier
@@ -12,7 +11,6 @@ services:
       - cache
       - jaeger
     volumes:
-      # shared volume between worker and api for media
       - saleor-media:/app/media
     env_file:
       - common.env
@@ -23,14 +21,12 @@ services:
 
   dashboard:
     image: ghcr.io/saleor/saleor-dashboard:3.23
-    
     restart: unless-stopped
     environment:
-      - API_URL=https://apisaleor.prsn.in/graphql/
+      - API_URL=https://apisaleor.prsn.in/graphql/
 
   db:
     image: library/postgres:15-alpine
-    
     restart: unless-stopped
     networks:
       - saleor-backend-tier
@@ -43,7 +39,6 @@ services:
 
   cache:
     image: valkey/valkey:8.1-alpine
-    
     restart: unless-stopped
     networks:
       - saleor-backend-tier
@@ -63,15 +58,10 @@ services:
       - cache
       - mailpit
     volumes:
-      # shared volume between worker and api for media
       - saleor-media:/app/media
 
   jaeger:
     image: jaegertracing/jaeger
-    ports:
-      - "16686:16686"
-      - "4317:4317"
-      - "4318:4318"
     restart: unless-stopped
     networks:
       - saleor-backend-tier
@@ -81,7 +71,6 @@ services:
 
   mailpit:
     image: axllent/mailpit
-    
     restart: unless-stopped
     networks:
       - saleor-backend-tier
