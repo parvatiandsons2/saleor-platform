@@ -20,6 +20,7 @@ services:
     environment:
       - DASHBOARD_URL=https://saleor.prsn.in/
       - ALLOWED_HOSTS=apisaleor.prsn.in,localhost,127.0.0.1,api
+      - WEB_CONCURRENCY=8
 
   dashboard:
     image: ghcr.io/saleor/saleor-dashboard:3.23
